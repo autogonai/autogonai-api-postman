@@ -2,27 +2,27 @@
 
 # AutogonAI API Postman
 
-Autogon now offers Postman Collections and Environment for a quicker and easier usage of our RESTful APIs.
+Autogon now offers Postman Collections and Environments for a quicker and easier usage of our RESTful APIs.
 
 ## How to import and configure
 - Clone the `autogonai-api-postman` repository.
 
 - Click the Import button. On Postman, the button is at the top left: 
-	<p align="center"><img src="https://raw.githubusercontent.com/autgonai/autogonai-api-postman/main/assets/1.png" alt="Screenshot of Postman with 'Import' button out at top left."></p>
+	<p align="center"><img src="https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png" alt="Screenshot of Postman with 'Import' button out at top left."></p>
 
 - On the `Import` pop-up page, select the `Folder` tab. Click the `Choose folder from your computer` button and choose the root folder of the previously cloned repository. 
 
-	<p align="center"><img src="https://raw.githubusercontent.com/autgonai/autogonai-api-postman/main/assets/1.png" alt="Screenshot of Postman, showing the Import screen."></p>
+	<p align="center"><img src="https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png" alt="Screenshot of Postman, showing the Import screen."></p>
 
 - Select which collections and environments you would like to import and click the `Import` button.
 
-	<p align="center"><img src="https://raw.githubusercontent.com/autgonai/autogonai-api-postman/main/assets/1.png" alt="Screenshot of Postman showing the Import screen after selecting the folder."></p>
+	<p align="center"><img src="https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png" alt="Screenshot of Postman showing the Import screen after selecting the folder."></p>
 
-- Select the `Environments` tab on the left, choose the environment, and set your API ket by changing the `Current Value` column (see screenshort); (The `Timestamp`, `Signature`, `Initial Value` fields can be left empty as they'll be automatically filled by Postman when sending a request.)
-	<p align="center"><img src="https://raw.githubusercontent.com/autgonai/autogonai-api-postman/main/assets/1.png" alt="Screenshot of Postman with showing where the user should fill in their API key."></p>
+- Select the `Environments` tab on the left, choose the environment, and set your API key by changing the `Current Value` column (see screenshot); (The `Timestamp`, `Signature`, `Initial Value` fields can be left empty as they'll be automatically filled by Postman when sending a request.)
+	<p align="center"><img src="https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png" alt="Screenshot of Postman with showing where the user should fill in their API key."></p>
 
 - Select your newly-added environment from the environment dropdown menu. This is at the top right, to the left of the eye icon.
-	<p align="center"><img src="https://raw.githubusercontent.com/autgonai/autogonai-api-postman/main/assets/1.png" alt="Screenshot of Postman showing how imported environments can be selected from a dropdown."></p>
+	<p align="center"><img src="https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png" alt="Screenshot of Postman showing how imported environments can be selected from a dropdown."></p>
 
 
 ## Postman safety practices
@@ -36,7 +36,7 @@ The following practices are advised to secure your account's safety:
 ## FAQ
 **Q:** Why can't I get any response? 
 
-You haven't imported the environoment file or you've imported it but you haven't selected it from the dropdown menu (mentioned in [[How to import and configure]])
+You haven't imported the environment file or you've imported it but you haven't selected it from the dropdown menu (mentioned in [How to import and configure](#how-to-import-and-configure))
 
 **Q**: Error `API-key format invalid.`
 
@@ -47,7 +47,7 @@ Likely causes:
 
 **Q**: Error `Mandatory parameter 'xxxx' was not sent, was empty/null or malformed.`
 
-Please refer to the API documentationn to double check all the mandatory parameters.
+Please refer to the API documentation to double check all the mandatory parameters.
 
 
 ## My question isn't here

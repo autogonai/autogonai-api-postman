@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "02fb52a6-9b12-4770-82c2-a2278b41ad63",
+		"name": "Autogon For Developers",
+		"description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n\n# AutogonAI API Postman\n\nAutogon now offers Postman Collections and Environments for a quicker and easier usage of our RESTful APIs.\n\n## How to import and configure\n- Clone the `autogonai-api-postman` repository.\n\n- Click the Import button. On Postman, the button is at the top left: \n\t<p align=\"center\"><img src=\"https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png\" alt=\"Screenshot of Postman with 'Import' button out at top left.\"></p>\n\n- On the `Import` pop-up page, select the `Folder` tab. Click the `Choose folder from your computer` button and choose the root folder of the previously cloned repository. \n\n\t<p align=\"center\"><img src=\"https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png\" alt=\"Screenshot of Postman, showing the Import screen.\"></p>\n\n- Select which collections and environments you would like to import and click the `Import` button.\n\n\t<p align=\"center\"><img src=\"https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png\" alt=\"Screenshot of Postman showing the Import screen after selecting the folder.\"></p>\n\n- Select the `Environments` tab on the left, choose the environment, and set your API key by changing the `Current Value` column (see screenshot); (The `Timestamp`, `Signature`, `Initial Value` fields can be left empty as they'll be automatically filled by Postman when sending a request.)\n\t<p align=\"center\"><img src=\"https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png\" alt=\"Screenshot of Postman with showing where the user should fill in their API key.\"></p>\n\n- Select your newly-added environment from the environment dropdown menu. This is at the top right, to the left of the eye icon.\n\t<p align=\"center\"><img src=\"https://github.com/autogonai/autogonai-api-postman/raw/main/assets/1.png\" alt=\"Screenshot of Postman showing how imported environments can be selected from a dropdown.\"></p>\n\n\n## Postman safety practices\nThe following practices are advised to secure your account's safety:\n- Don't use Collections obtained from an unknown source.\n- Review the environment JSON file before its usage.\n- Don't use any code that you don't understand.\n- When you finish trying out the API, delete your API keys.\n\n\n## FAQ\n**Q:** Why can't I get any response? \n\nYou haven't imported the environment file or you've imported it but you haven't selected it from the dropdown menu (mentioned in [How to import and configure](#how-to-import-and-configure))\n\n**Q**: Error `API-key format invalid.`\n\nLikely causes:\n- API key is not set.\n- API key is not correct. \n- `X-AUG-KEY` is not selected in your Postman `Headers` tab.\n\n**Q**: Error `Mandatory parameter 'xxxx' was not sent, was empty/null or malformed.`\n\nPlease refer to the API documentation to double check all the mandatory parameters.\n\n\n## My question isn't here\nIf you don't find your answer here, please consult our developer community on [Discord](https://discord.gg/bR8Zzrjw6y) for similar questions from the community or open an issue [here](https://github.com/autogonai/autogonai-api-postman/issues)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21999530"
+	},
+	"item": [
+		{
+			"name": "Engines",
+			"item": [
+				{
+					"name": "Data Processing",
+					"item": [
+						{
+							"name": "Data Input",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": null,\r\n    \"block_id\": 0,\r\n    \"function_code\": \"DP_1\",\r\n    \"args\": {\r\n        \"dburl\": \"https://raw.githubusercontent.com/autogonai/autogon-public-datasets/main/mobile_price_prediction.csv\",\r\n        \"dbservertype\": \"\",\r\n        \"file_type\": \"csv\",\r\n        \"database_name\": \"\",\r\n        \"dbuser\": \"\",\r\n        \"dbpassword\": \"\",\r\n        \"query\": \"\",\r\n        \"x_boundaries\": \":, :-1\",\r\n        \"y_boundaries\": \":, -1\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start",
+										""
+									]
+								},
+								"description": "Loads data into a project. Specify the data sources, this functionality can take database connection, CSV or JSON files."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Machine Learning",
+					"item": []
+				},
+				{
+					"name": "Deep Learning",
+					"item": []
+				},
+				{
+					"name": "Automated Machine Learning",
+					"item": []
+				},
+				{
+					"name": "Automated Deep Learning",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "Other endpoints",
+			"item": [
+				{
+					"name": "Dashboard",
+					"item": []
+				},
+				{
+					"name": "Project",
+					"item": []
+				},
+				{
+					"name": "StateManagement",
+					"item": []
+				},
+				{
+					"name": "Datasets",
+					"item": []
+				},
+				{
+					"name": "FunctionCodes",
+					"item": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-AUG-KEY",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{API_KEY}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
