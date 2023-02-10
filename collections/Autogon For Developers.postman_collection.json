@@ -8,19 +8,19 @@
 	},
 	"item": [
 		{
-			"name": "Engines",
+			"name": "Core",
 			"item": [
 				{
-					"name": "Data Processing",
+					"name": "Project",
 					"item": [
 						{
-							"name": "Data Input",
+							"name": "Create Project",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": null,\r\n    \"block_id\": 0,\r\n    \"function_code\": \"DP_1\",\r\n    \"args\": {\r\n        \"dburl\": \"https://raw.githubusercontent.com/autogonai/autogon-public-datasets/main/mobile_price_prediction.csv\",\r\n        \"dbservertype\": \"\",\r\n        \"file_type\": \"csv\",\r\n        \"database_name\": \"\",\r\n        \"dbuser\": \"\",\r\n        \"dbpassword\": \"\",\r\n        \"query\": \"\",\r\n        \"x_boundaries\": \":, :-1\",\r\n        \"y_boundaries\": \":, -1\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"project_name\": \"My First Project\",\r\n    \"project_description\": \"This is a great project. I hope to achieve more with Autogon\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -28,7 +28,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{URL}}/api/v1/engine/start/",
+									"raw": "{{URL}}/api/v1/engine/project",
 									"host": [
 										"{{URL}}"
 									],
@@ -36,11 +36,483 @@
 										"api",
 										"v1",
 										"engine",
-										"start",
+										"project"
+									]
+								},
+								"description": "Creates a new project."
+							},
+							"response": []
+						},
+						{
+							"name": "List Projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/project/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"project",
 										""
 									]
 								},
+								"description": "List projects for the current user."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Project",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/project/{{app_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"project",
+										"{{app_id}}"
+									]
+								},
+								"description": "Get details for specified project."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Project",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/project/{{app_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"project",
+										"{{app_id}}"
+									]
+								},
+								"description": "Moves a project to trash.\n\n**Good to know**: A deleted project may still be restored until after 30 days to deletion. To restore a deleted project, contact our support with details of the project to be restored."
+							},
+							"response": []
+						}
+					],
+					"description": "Projects are a baseline for building on Autogon."
+				},
+				{
+					"name": "StateManagement",
+					"item": [
+						{
+							"name": "Get Block",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/statemanagement/{{block_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"statemanagement",
+										"{{block_id}}"
+									]
+								},
+								"description": "Get details for a block\n\n."
+							},
+							"response": []
+						}
+					],
+					"description": "States represent the building blocks of a project"
+				},
+				{
+					"name": "Datasets",
+					"item": [
+						{
+							"name": "Data Upload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/USER/Downloads/california_housing_train.csv"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/upload/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"upload",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Dataset",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"dataset_name\": \"Mobile Price Prediction\",\r\n    \"dataset_description\": \"The comprehensive collection of information on various mobile devices. The dataset contains over 10,000 rows of data, each representing a unique mobile phone with various attributes such as brand, model, storage capacity, RAM, camera specifications, and more.\",\r\n    \"dataset_type\": \"csv\",\r\n    \"dataset_url\": \"https://raw.githubusercontent.com/autogonai/autogon-public-datasets/main/mobile_price_prediction.csv\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/project",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"project"
+									]
+								},
+								"description": "Creates a new project."
+							},
+							"response": []
+						},
+						{
+							"name": "List Datasets",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/datasets/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"datasets",
+										""
+									]
+								},
+								"description": "List datasets for the current user."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Dataset",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/dataset/{{id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"dataset",
+										"{{id}}"
+									]
+								},
+								"description": "Get details for specified dataset."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Dataset",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/datasets/{{id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"datasets",
+										"{{id}}"
+									]
+								},
+								"description": "Moves a dataset to trash.\n\n**Good to know**: A deleted dataset may still be restored until after 30 days to deletion. To restore a deleted project, contact our support with details of the dataset to be restored."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FunctionCodes",
+					"item": [
+						{
+							"name": "Function Codes / Details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/functionsdb",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"functionsdb"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "This folder contain other API endpoint that makes building possible with AutogonAI."
+		},
+		{
+			"name": "Development",
+			"item": [
+				{
+					"name": "Data Processing",
+					"item": [
+						{
+							"name": "Data Input (DP_1)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": null,\r\n    \"block_id\": 1,\r\n    \"function_code\": \"DP_1\",\r\n    \"args\": {\r\n        \"dburl\": \"https://raw.githubusercontent.com/autogonai/autogon-public-datasets/main/mobile_price_prediction.csv\",\r\n        \"dbservertype\": \"\",\r\n        \"file_type\": \"csv\",\r\n        \"database_name\": \"\",\r\n        \"dbuser\": \"\",\r\n        \"dbpassword\": \"\",\r\n        \"query\": \"\",\r\n        \"x_boundaries\": \":, :-1\",\r\n        \"y_boundaries\": \":, -1\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
 								"description": "Loads data into a project. Specify the data sources, this functionality can take database connection, CSV or JSON files."
+							},
+							"response": []
+						},
+						{
+							"name": "Missing Data (DP_2)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 1,\r\n    \"block_id\": 2,\r\n    \"function_code\": \"DP_2\",\r\n    \"args\": {\r\n        \"strategy_value\": \"mean\",\r\n        \"x_boundaries\": \":, 2:\",\r\n        \"y_boundaries\": null\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
+								"description": "StartFragment\n\nThis functionality handles missing data using various techniques. e.g mean, mode and more.\n\nEndFra"
+							},
+							"response": []
+						},
+						{
+							"name": "Data Encoding (DP_3)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 2,\r\n    \"block_id\": 3,\r\n    \"function_code\": \"DP_3\",\r\n    \"args\": {\r\n        \"xvalue\": {\r\n            \"encode\": true,\r\n            \"encoding_type\": \"onehot\",\r\n            \"remainder\": \"passthrough\",\r\n            \"index\": 0\r\n        },\r\n        \"yvalue\": {\r\n            \"encode\": false,\r\n            \"encoding_type\": \"categorical\",\r\n            \"remainder\": \"drop\",\r\n            \"index\": 2\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
+								"description": "This functionality converts data to a recognizable format through encoding. Supported techniques include one-hot, label and categorical encoding.  \n\nThis process involves converting data into a format that can be understood by a computer. This can include converting text into numerical values, or categorizing data into discrete groups. The goal of encoding is to make it possible for a machine learning algorithm to interpret and learn from the data.\n\n  \nThere are many different types of encoding techniques, such as one-hot encoding, which converts categorical data into a binary format, and label encoding, which assigns a unique numerical value to each category in a categorical variable. The appropriate encoding technique depends on the type of data and the machine learning algorithm being used."
+							},
+							"response": []
+						},
+						{
+							"name": "Data Split (DP_4)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 3,\r\n    \"block_id\": 4,\r\n    \"function_code\": \"DP_4\",\r\n    \"args\": {\r\n        \"test_size\": 0.3,\r\n        \"random_state\": 0\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
+								"description": "This functionality splits data into two subsets: a training set and a test set. The training set is used to train a model, while the test set is used to evaluate its performance.\n\nThis process of separating data into two sets is a crucial step in the process of developing and evaluating machine learning models. It ensures that the model is able to generalize well to new, unseen data, and it also allows for a more accurate assessment of the model's performance.\n\n  \nThis functionality of splitting data into training and test sets is widely used in the field of machine learning and data science."
+							},
+							"response": []
+						},
+						{
+							"name": "Feature Scaling (DP_5)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 4,\r\n    \"block_id\": 5,\r\n    \"function_code\": \"DP_5\",\r\n    \"args\": {\r\n        \"xtrain\": true,\r\n        \"xtest\": true,\r\n        \"boundariestoscale\": \":, 2:\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
+								"description": "StartFragment\n\nThis functionality normalizes the range of values for different features in the datasetThis process is very important because many machine learning algorithms use the Euclidean distance between two points in their computations, and if the ranges of the features are vastly different, then the algorithm will be sensitive to the feature with the larger range, and may produce unexpected results.\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "Drop Data Columns (DP_6)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 5,\r\n    \"block_id\": 6,\r\n    \"function_code\": \"DP_6\",\r\n    \"args\": {\r\n        \"x_columns\": [0, 1, 3, 8],\r\n        \"y_columns\": []\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
+								"description": "This functionality normalizes the range of values for different features in the dataset. This process is very important because many machine learning algorithms use the Euclidean distance between two points in their computations, and if the ranges of the features are vastly different, then the algorithm will be sensitive to the feature with the larger range, and may produce unexpected results."
+							},
+							"response": []
+						},
+						{
+							"name": "Time Stepper (DP_7)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 5,\r\n    \"block_id\": 6,\r\n    \"function_code\": \"DP_6\",\r\n    \"args\": {\r\n        \"x_columns\": [0, 1, 3, 8],\r\n        \"y_columns\": []\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/v1/engine/start",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"engine",
+										"start"
+									]
+								},
+								"description": "This functionality creates time stepped data from x variable and uses it to create a Time Series dataset."
 							},
 							"response": []
 						}
@@ -48,7 +520,1415 @@
 				},
 				{
 					"name": "Machine Learning",
-					"item": []
+					"item": [
+						{
+							"name": "Simple Linear Regression",
+							"item": [
+								{
+									"name": "Simple Linear Regression (ML_R_1)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_1\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "StartFragment\n\nThis function models the relationship between two continuous variables. The objective is to predict the value of an output variable based on the value of an input variable.It uses a linear technique to predict the value of the dependent variable based on the value of the independent variable. The values of the coefficients of the equation are found by minimizing the difference between the observed values of the dependent variable and the predicted values by the equation.\n\nEndFragment"
+									},
+									"response": []
+								},
+								{
+									"name": "Simple Linear Regression (ML_R_1) Predict",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_1_P\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\",\r\n        \"test_data\": null\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Multiple Linear Regression",
+							"item": [
+								{
+									"name": "Multiple Linear Regression (ML_R_2)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_2\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "This function models the relationship between more independent variables. The objective is to predict the value of an output variable based on the value of input variables.The method uses a linear technique to describe the relationship between the variables, and the coefficients of the equation are determined by minimizing the sum of the squared differences between the observed values of the dependent variable and the values predicted by the equation. It's a way to analyze multiple factors and understand how they influence a certain outcome."
+									},
+									"response": []
+								},
+								{
+									"name": "Multiple Linear Regression Predict (ML_R_2_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_R_3_P\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Polynomial Linear Regression",
+							"item": [
+								{
+									"name": "Polynomial Linear Regression (ML_R_3)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_3\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Polynomial Linear Regression Predict (ML_R_3_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_R_3_P\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Support Vector Regression",
+							"item": [
+								{
+									"name": "Support Vector Regression (ML_R_4)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_4\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Support Vector Regression Predict (ML_R_4_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_R_4_P\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Decision Tree Regression",
+							"item": [
+								{
+									"name": "Decision Tree Regression (ML_R_5)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_5\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Decision Tree Regression Predict (ML_R_5_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_5\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Random Forest Regression",
+							"item": [
+								{
+									"name": "Random Forest Regression (ML_R_6)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_6\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Random Forest Regression Predict (ML_R_6_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_R_6_P\",\r\n    \"args\": {\r\n        \"model_name\": \"SimpleModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Logistic Regression",
+							"item": [
+								{
+									"name": "Logistic Regression (ML_CN_1)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_R_5\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Logistic Regression Predict (ML_CN_1_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_1_P \",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "Logistic Regression Metrics (ML_CN_1_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_1_P \",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "K-Nearest Neighbors - KNN",
+							"item": [
+								{
+									"name": "K-Nearest Neighbors - KNN (ML_CN_2)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_CN_2\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "K-Nearest Neighbors - KNN Predict (ML_CN_2_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_2_P\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "K-Nearest Neighbors - KNN Metrics (ML_CN_2_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_2_M\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Support Vector Machine",
+							"item": [
+								{
+									"name": "Support Vector Machine (ML_CN_3)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_CN_3\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Support Vector Machine Metrics (ML_CN_3_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_3_P\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "Support Vector Machine Metrics (ML_CN_3_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_3_M\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Kernel SVM",
+							"item": [
+								{
+									"name": "Kernel SVM (ML_CN_4)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_CN_4\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Kernel SVM Predict (ML_CN_4_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_4_P\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "Kernel SVM Metrics (ML_CN_4_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_4_M\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Naive Bayes",
+							"item": [
+								{
+									"name": "Naive Bayes (ML_CN_5)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_CN_5\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Naive Bayes Predict (ML_CN_5_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_5_P\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "Naive Bayes Metrics (ML_CN_5_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_5_M\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Decision Tree Classification",
+							"item": [
+								{
+									"name": "Decision Tree Classification (ML_CN_6)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_CN_6\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Decision Tree Classification Predict (ML_CN_6_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_6_P\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "Decision Tree Classification Metrics (ML_CN_6_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_6_M\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Random Forest Classification",
+							"item": [
+								{
+									"name": "Random Forest Classification (ML_CN_7)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 7,\r\n    \"block_id\": 8,\r\n    \"function_code\": \"ML_CN_7\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Random Forest Classification Predict (ML_CN_7_P)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_7_P\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\",\r\n        \"test_data\": \"\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Make predictions with the pre-built model passing an optional test data."
+									},
+									"response": []
+								},
+								{
+									"name": "Random Forest Classification Metrics (ML_CN_7_M)",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"project_id\": 1,\r\n    \"parent_id\": 8,\r\n    \"block_id\": 9,\r\n    \"function_code\": \"ML_CN_7_M\",\r\n    \"args\": {\r\n        \"model_name\": \"ClassicModel\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/api/v1/engine/start",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"engine",
+												"start"
+											]
+										},
+										"description": "Evaluate model metrics"
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				},
 				{
 					"name": "Deep Learning",
@@ -65,29 +1945,8 @@
 			]
 		},
 		{
-			"name": "Other endpoints",
-			"item": [
-				{
-					"name": "Dashboard",
-					"item": []
-				},
-				{
-					"name": "Project",
-					"item": []
-				},
-				{
-					"name": "StateManagement",
-					"item": []
-				},
-				{
-					"name": "Datasets",
-					"item": []
-				},
-				{
-					"name": "FunctionCodes",
-					"item": []
-				}
-			]
+			"name": "Production",
+			"item": []
 		}
 	],
 	"auth": {
